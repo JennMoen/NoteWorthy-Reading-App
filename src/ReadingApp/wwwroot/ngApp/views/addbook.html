@@ -1,0 +1,58 @@
+﻿<h1>Add a book or article</h1>
+<h3>Enter your search terms here:</h3>
+
+<form ng-submit="controller.doSearch(search)">
+    <input type="text" ng-model="search" />
+    <input type="submit" value="find a book" />
+</form>
+
+<p>(Don't see the book you want?  Enter your information manually) </p>
+
+<form ng-submit="controller.addResource(resource)">
+    <div>
+        <input type="text" ng-model="resource.title" placeholder="Title" />
+        <input type="text" ng-model="resource.author" placeholder="Author" />
+    </div>
+    <div>
+        <input type="text" ng-model="resource.imageUrl" placeholder="Image link" />
+        <input type="text" ng-model="resource.link" placeholder="GoogleBooks link" />
+    </div>
+    <input type="submit" value="Add" />
+
+</form>
+
+
+
+
+<div class="displaybooks">
+    <div class="row">
+        <div class="col-md-4" ng-repeat="resource in controller.resources" ng-click="controller.addResource(resource)">
+            <div>Author: {{resource.author}}</div>
+            <div>Title: {{resource.title}}</div>
+            <div><img ng-src="{{resource.imageUrl}}" /></div>
+            <div><a target="_blank" href="{{resource.link}}">GoogleBooks Link</a></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--<div class="displaybooks">
+    <div class="row">
+        <div class="col-md-4" ng-repeat="resource in controller.resources.items" ng-click="controller.addResource(resource)">
+            <div ng-model="resource.author">Author: {{resource.volumeInfo.authors[0]}}</div>
+            <div ng-model="resource.title">Title: {{resource.volumeInfo.title}}</div>
+            <div ng-model="resource.imageUrl"><img ng-src="{{resource.volumeInfo.imageLinks.thumbnail}}" /></div>
+            <div ng-model="resource.link"><a target="_blank" href="{{resource.volumeInfo.infoLink}}">GoogleBooks Link</a></div>
+        </div>
+    </div>
+</div>-->
+
+
+
+
+
+
+
+

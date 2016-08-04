@@ -1,0 +1,17 @@
+﻿<h1>Search through your comments</h1>
+
+<form ng-submit="controller.searchComments(searchTerms)">
+    <input type="text" ng-model="searchTerms" />
+    <input type="submit" value="search comments" />
+</form>
+
+
+
+<h6>Comments mathcing your search terms:</h6>
+<div ng-repeat="comment in controller.comments">
+    <div ui-sref="bookdetail({id: comment.resourceId})">Source: {{comment.resource}}</div>
+    <div class="commentblock">
+        <div>Location: {{comment.location}}</div>
+        <div>{{comment.text}}</div>
+    </div>
+</div>

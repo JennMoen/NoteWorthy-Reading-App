@@ -1,0 +1,46 @@
+﻿<h2>Book Detail View</h2>
+
+<div id="bookpiece">
+    <div>
+        Author: {{controller.resource.author}}
+    </div>
+    <div> Title: {{controller.resource.title}}</div>
+    <div><img class="bookimage" ng-src="{{controller.resource.imageUrl}}"  ng-if="controller.resource.imageUrl"  /></div>
+    <div><img class="bookimage" ng-src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSRIRxDyIMYyS2JM8xe00NT5LiZ0eGKKBY2bADq2d8t8A8Aev1A1Q" ng-if="!controller.resource.imageUrl" /></div>
+    <div><a href="{{controller.resource.link}}">GoogleBooks Link</a> </div>
+    <div>Date Created: {{controller.resource.dateCreated | date: 'MMMM d, yyyy'}}</div>
+    <div> Last Updated: {{controller.resource.lastUpdated | date: 'MMMM d, yyyy'}} </div>
+</div>
+<button class="btn btn-danger" ng-click="controller.deleteResource(resource)">Delete</button>
+
+
+
+
+
+<div>
+    <form ng-submit="controller.postComment(comment)">
+        <h4>Add a comment to this book</h4>
+        <div>
+            <label>Page Number:</label>
+            <input type="text" ng-model="comment.location"/>
+        </div>
+        <div>
+
+            <label>Comments</label>
+            <textarea ng-model="comment.text"></textarea>
+        </div>
+        <input type="submit" value="Add Comment" ng-model="comment" />
+    </form>
+</div>
+
+
+
+<div class="col-md-4" id="commentcol">
+    <div class="div comments" ng-repeat="comment in controller.resource.comments">
+        <div class="commentblock">
+            
+            <div> Location: {{comment.location}}</div>
+            <div>Comment:{{comment.text}}</div><button class="btn btn-danger" ng-click="controller.deleteComment(comment)">Delete</button>
+        </div>
+    </div>
+</div>
