@@ -5,9 +5,9 @@ namespace ReadingApp.Controllers {
         public message2 = "A Handy Source for Storing and Searching your Personal Reading Notes and Comments";
 
         public images = [
-            { id: 1, image: "http://www.thelitwitch.com/wp-content/uploads/2011/05/For_Whom_Tolls.jpg", text: "Books" },
-            { id: 2, image: "http://cdn.slashgear.com/wp-content/uploads/2012/10/Jobs_Newsweek.jpeg", text: "Magazines" },
-            { id: 3, image: "https://lh5.ggpht.com/s5DuS8_GWnjvGd-Ypdxd9-5S3H3ul_82CFMomN7OgTYBM223Sxnf-qOZLxPk0owqUAw=w300", text: "E-Sources" }
+            { id: 1, image: "http://www.thelitwitch.com/wp-content/uploads/2011/05/For_Whom_Tolls.jpg" },
+            { id: 2, image: "http://1.bp.blogspot.com/-XuQSpzI4B3U/Tea6PhfeDLI/AAAAAAAACgQ/Mire05ZL4EU/s1600/Rooftop%2BThe%2BGood%2BEarth0001.jpg" },
+            { id: 3, image: "http://upload.wikimedia.org/wikipedia/en/thumb/4/4b/Crimeandpunishmentcover.png/200px-Crimeandpunishmentcover.png" }
         ]
 
     }
@@ -45,7 +45,7 @@ namespace ReadingApp.Controllers {
         public comments;
 
         constructor(private $http: ng.IHttpService, private $stateParams: ng.ui.IStateParamsService, private $state: ng.ui.IStateService) {
-            $http.get(`/api/resource/${$stateParams['id']}`)
+            $http.get(`/api/resource/${$stateParams['resourceid']}`)
                 .then((response) => {
 
                     this.resource = response.data;
@@ -55,9 +55,9 @@ namespace ReadingApp.Controllers {
         }
 
         public postComment(comment) {
-            this.$http.post(`/api/resource/${this.$stateParams['id']}/comments`, comment)
+            this.$http.post(`/api/resource/${this.$stateParams['resourceid']}/comments`, comment)
                 .then((response) => {
-                    this.$state.reload;
+                    this.$state.reload();
                 })
                 .catch((reason) => {
                     console.log(reason);
@@ -76,14 +76,7 @@ namespace ReadingApp.Controllers {
 
         }
 
-        public deleteComment(comment) {
-            this.$http.delete(`/api/resource/${this.$stateParams['id']}/comments`, comment).then((results) => {
-                this.$state.go('bookdetail');
-            })
-                .catch((reason) => {
-                    console.log(reason);
-                });
-        }
+
 
     }
 
@@ -130,5 +123,41 @@ namespace ReadingApp.Controllers {
 
     }
 
+
+    export class CommentDetailController {
+
+        public comment;
+
+        constructor(private $http: ng.IHttpService, private $stateParams: ng.ui.IStateParamsService, private $state: ng.ui.IStateService) {
+            $http.get(`/api/comments/${$stateParams['id']}`)
+                .then((response) => {
+
+                    this.comment = response.data;
+
+                });
+        }
+
+        public deleteComment(comment) {
+            this.$http.delete(`/api/comments/${this.$stateParams['id']}`, comment).then((results) => {
+                this.$state.reload;
+            })
+                .catch((reason) => {
+                    console.log(reason);
+                });
+        }
+
+        public editComment(comment) {
+            this.$http.post(`/api/comments/${this.$stateParams['id']}`, comment).then((results) => {
+                this.$state.reload();
+            })
+                .catch((reason) => {
+                    console.log(reason);
+                });
+
+
+
+        }
+
+    }
 
 }

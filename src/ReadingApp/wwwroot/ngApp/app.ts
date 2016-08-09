@@ -19,6 +19,12 @@ namespace ReadingApp {
                 controller: ReadingApp.Controllers.SearchController,
                 controllerAs: 'controller'
             })
+            .state('commentdetail', {
+                url: '/commentdetail/:id',
+                templateUrl: '/ngApp/views/commentdetail.html',
+                controller: ReadingApp.Controllers.CommentDetailController,
+                controllerAs: 'controller'
+            })
             .state('secret', {
                 url: '/secret',
                 templateUrl: '/ngApp/views/secret.html',
@@ -56,7 +62,7 @@ namespace ReadingApp {
                 controllerAs: 'controller'
             })
             .state('bookdetail', {
-                url: '/bookdetail/:id',
+                url: '/bookdetail/:resourceid',
                 templateUrl: '/ngApp/views/bookdetail.html',
                 controller: ReadingApp.Controllers.ResourceDetailsController,
                 controllerAs: 'controller'

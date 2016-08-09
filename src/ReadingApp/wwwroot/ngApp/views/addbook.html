@@ -26,7 +26,7 @@
 
 <div class="displaybooks">
     <div class="row">
-        <div class="col-md-4" ng-repeat="resource in controller.resources" ng-click="controller.addResource(resource)">
+        <div id ="onebook" class="col-md-4" ng-repeat="resource in controller.resources" ng-click="controller.addResource(resource)">
             <div>Author: {{resource.author}}</div>
             <div>Title: {{resource.title}}</div>
             <div><img ng-src="{{resource.imageUrl}}" /></div>

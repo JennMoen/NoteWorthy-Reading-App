@@ -52,14 +52,15 @@ textarea {
 .homedisplay {
     display: inline-block;
     align-content: center;
-    margin-left: 50px;
+    margin-left: 60px;
 }
 
 .homeimg {
-    height: 400px;
-    width: 300px;
-    display: inline-block;
+    height: 350px;
+    width: 250px;
+   
     padding: 20px;
+    box-shadow: inset;
 }
 
 .searchbook {
@@ -94,9 +95,14 @@ textarea {
 }
 
 .displaybooks {
-    margin-top: -250px;
+    margin-top: 50px;
 }
 
 #bookpiece {
     max-width: 300px;
+}
+
+#onebook {
+
+padding: 20px;
 }

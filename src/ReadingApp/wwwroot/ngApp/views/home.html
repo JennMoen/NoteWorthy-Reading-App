@@ -1,11 +1,15 @@
 <h2>Home</h2>
 <h6 ng-hide="account.isLoggedIn()">Welcome!  Please <a ui-sref="login">log in</a></h6>
-<p>
-    <h1 class="mainmsg">{{controller.message1}}</h1>
-    <h4 class="mainmsg">{{controller.message2}}</h4>
-</p>
 
-<div class="homedisplay" ng-repeat="(idx, items) in controller.images">
-    <div><img class="homeimg" ng-src="{{controller.images[idx].image}}" /></div>
-    <div class="homedisplay">{{controller.images[idx].text}}</div>
+<div class="jumbotron">
+    <p>
+        <h1 class="mainmsg">{{controller.message1}}</h1>
+        <h4 class="mainmsg">{{controller.message2}}</h4>
+    </p>
+
+    <div class="homedisplay" ng-repeat="(idx, items) in controller.images">
+        <div class="col-m-4"><img class="homeimg" ng-src="{{controller.images[idx].image}}" /></div>
+        <div class="homedisplay">{{controller.images[idx].text}}</div>
+    </div>
 </div>
+

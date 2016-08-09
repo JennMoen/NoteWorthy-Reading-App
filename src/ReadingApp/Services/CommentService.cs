@@ -47,6 +47,21 @@ namespace ReadingApp.Services
 
         }
 
+        public CommentDTO GetCommentById(int id)
+        {
+            return (from c in _commentRepo.GetCommentById(id)
+
+                    select new CommentDTO()
+                    {
+                        Id = c.Id,
+                        Location = c.Location,
+                        Text = c.Text,
+                        ResourceId = c.ResourceId
+                    }).FirstOrDefault();
+
+
+        }
+
         public IList<CommentDTO> CommentSearch(string searchTerms, string currentUser)
         {
 
@@ -79,10 +94,28 @@ namespace ReadingApp.Services
 
             };
 
-            _commentRepo.Delete(dbComment, comment.Id);
+            _commentRepo.Delete(dbComment);
 
 
         }
+
+        public void UpdateComment(CommentDTO comment, string currentUser)
+        {
+
+            Comment dbComment = new Comment()
+            {
+                Id = comment.Id,
+                Location = comment.Location,
+                Text = comment.Text,
+                ResourceId=comment.ResourceId
+
+            };
+
+            _commentRepo.Edit(dbComment);
+
+
+        }
+
 
         public void AddComment(CommentDTO comment, string currentUser)
         {

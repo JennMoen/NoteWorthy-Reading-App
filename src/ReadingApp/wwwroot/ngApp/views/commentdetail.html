@@ -1,0 +1,15 @@
+﻿<div class="commentblock">
+    <div>Location: {{controller.comment.location}}</div>
+    <div>Comment: {{controller.comment.text}}</div>
+
+</div>
+
+<!--<form ng-submit="controller.editComment(comment)">
+    <label>Location</label>
+    <input type="text" ng-model="comment.location" />
+    <label> Comment text</label>
+    <input type="text" ng-model="comment.text" />
+</form>-->
+
+<button class="btn btn-info">Edit Comment</button>
+<button class="btn btn-danger" ng-click="controller.deleteComment(comment)">Delete Comment</button>

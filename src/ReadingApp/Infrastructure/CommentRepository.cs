@@ -20,7 +20,7 @@ namespace ReadingApp.Infrastructure
 
         }
 
-        public IQueryable<Comment> CommentSearch(IList<string> searchTerms, string user)
+        public IQueryable<Comment> CommentSearch(IList<string> searchTerms, string user)            //find comments that contain search word
         {
 
             return from c in _db.Comments
@@ -34,12 +34,21 @@ namespace ReadingApp.Infrastructure
 
 
 
-        public IQueryable<Comment> GetCommentsByResourceId(int id)      //find comments that match a certain resource IdS
+        public IQueryable<Comment> GetCommentsByResourceId(int id)      //find comments that match a certain resource id
         {
 
             return from c in _db.Comments
                    where c.ResourceId == id
                    select c;
+
+        }
+
+        public IQueryable<Comment> GetCommentById(int id)               //find one comment by its id
+        {
+            return from c in _db.Comments
+                   where c.Id == id
+                   select c;
+
 
         }
 
@@ -52,12 +61,17 @@ namespace ReadingApp.Infrastructure
 
         }
 
-        public void Delete(Comment comment, int id) {
-
-            comment.Id = id;
-
+        public void Delete(Comment comment)
+        {
             _db.Comments.Remove(comment);
             _db.SaveChanges();
+        }
+
+        public void Edit(Comment comment)
+        {
+            _db.Comments.Update(comment);
+            _db.SaveChanges();
+
         }
 
     }

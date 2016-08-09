@@ -85,16 +85,20 @@ namespace ReadingApp.Controllers
         }
 
 
-        [HttpDelete("{id}/comments")]
-        public IActionResult Delete(CommentDTO comment, int id)
-        {
-            comment.Id = id;
+     
+
+
+
+        /*[HttpDelete("{id}/comments/{id}")]
+        public IActionResult Delete(CommentDTO comment) { 
+      
+      
             _commentService.DeleteComment(comment, User.Identity.Name);
             return Ok();
 
 
 
-        }
+        }*/
     }
 }
 
