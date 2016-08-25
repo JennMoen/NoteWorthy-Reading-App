@@ -29,19 +29,28 @@
             <label>Comments</label>
             <textarea ng-model="comment.text"></textarea>
         </div>
-       <input type="submit" value="Add Comment" ng-model="comment" />
+        <input type="submit" value="Add Comment" ng-model="comment" />
         <!--<button class="btn btn-primary">Add Comment</button>-->
     </form>
 </div>
 
-
+<!--ui-sref="commentdetail({id: comment.id})"-->
 
 <div class="col-md-4" id="commentcol">
     <div class="div comments" ng-repeat="comment in controller.resource.comments">
-        <div class="commentblock" ui-sref="commentdetail({id: comment.id})">
+        <div class="commentblock" >
             <div> Location: {{comment.location}}</div>
             <div>Comment:{{comment.text}}</div>
-           
+            <!--<form ng-submit="controller.editComment(comment)" >
+                <input type="text" />
+                <input type="submit" value="Edit" />
+            </form>-->
+            <div>
+                
+                    <input type="submit" value="Delete" ng-click="controller.deleteComment(comment)" />
+                    
+                
+            </div>
         </div>
     </div>
 </div>

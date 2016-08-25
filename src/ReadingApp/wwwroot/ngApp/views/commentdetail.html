@@ -4,12 +4,20 @@
 
 </div>
 
-<!--<form ng-submit="controller.editComment(comment)">
-    <label>Location</label>
-    <input type="text" ng-model="comment.location" />
-    <label> Comment text</label>
-    <input type="text" ng-model="comment.text" />
-</form>-->
-
-<button class="btn btn-info">Edit Comment</button>
 <button class="btn btn-danger" ng-click="controller.deleteComment(comment)">Delete Comment</button>
+
+
+<form ng-submit="controller.editComment(comment)">
+    <div>
+        <label>Location</label>
+        <input type="text" ng-model="comment.location" />
+    </div>
+    <div>
+        <label> Comment text</label>
+        <input type="text" ng-model="comment.text" />
+    </div>
+    <div><button class="btn btn-info">Edit Comment</button></div>
+</form>
+
+
+

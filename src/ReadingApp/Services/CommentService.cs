@@ -11,7 +11,6 @@ using Iveonik.Stemmers;
 
 namespace ReadingApp.Services
 {
-    [Route("api/[controller]")]
     public class CommentService
     {
         private CommentRepository _commentRepo;
@@ -47,9 +46,9 @@ namespace ReadingApp.Services
 
         }
 
-        public CommentDTO GetCommentById(int id)
+        public CommentDTO GetCommentById(int id, string currentUser)
         {
-            return (from c in _commentRepo.GetCommentById(id)
+            return (from c in _commentRepo.GetCommentById(id, currentUser)
 
                     select new CommentDTO()
                     {
@@ -84,34 +83,21 @@ namespace ReadingApp.Services
 
         public void DeleteComment(CommentDTO comment, string currentUser)
         {
-
-            Comment dbComment = new Comment()
-            {
-                Id = comment.Id,
-                Location = comment.Location,
-                Text = comment.Text,
-
-
-            };
-
-            _commentRepo.Delete(dbComment);
-
-
+            _commentRepo.Delete(_commentRepo.GetCommentById(comment.Id, currentUser).First(), currentUser);
         }
+
 
         public void UpdateComment(CommentDTO comment, string currentUser)
         {
 
-            Comment dbComment = new Comment()
+            Comment dbComment = _commentRepo.GetCommentById(comment.Id, currentUser).First();
             {
-                Id = comment.Id,
-                Location = comment.Location,
-                Text = comment.Text,
-                ResourceId=comment.ResourceId
+                dbComment.Location  = comment.Location;
+                comment.Text = dbComment.Text;
 
-            };
+                    }
 
-            _commentRepo.Edit(dbComment);
+            _commentRepo.SaveChanges();
 
 
         }

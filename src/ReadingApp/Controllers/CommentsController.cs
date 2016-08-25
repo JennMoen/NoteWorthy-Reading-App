@@ -39,30 +39,30 @@ namespace ReadingApp.Controllers
         public CommentDTO Get(int id)
         {
 
-            return _commentService.GetCommentById(id);
+            return _commentService.GetCommentById(id, User.Identity.Name);
 
         }
 
 
         [HttpDelete("{id}")]
-          public IActionResult Delete(CommentDTO comment, int id)
-          {
-              comment.Id = id;
-              _commentService.DeleteComment(comment, User.Identity.Name);
-              return Ok();
+        public IActionResult Delete(CommentDTO comment, int id)
+        {
+            comment.Id = id;
+            _commentService.DeleteComment(comment, User.Identity.Name);
+            return Ok();
 
-          }
+        }
 
 
         [HttpPost("{id}")]
-        public IActionResult Update(int id, CommentDTO comment)
+        public IActionResult Update([FromBody] CommentDTO comment)
         {
             if (!ModelState.IsValid)
             {
-
+                
                 return BadRequest(ModelState);
             }
-            comment.Id = id;
+            
             _commentService.UpdateComment(comment, User.Identity.Name);
 
             return Ok();

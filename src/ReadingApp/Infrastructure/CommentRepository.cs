@@ -43,10 +43,10 @@ namespace ReadingApp.Infrastructure
 
         }
 
-        public IQueryable<Comment> GetCommentById(int id)               //find one comment by its id
+        public IQueryable<Comment> GetCommentById(int id, string user)               //find one comment by its id
         {
             return from c in _db.Comments
-                   where c.Id == id
+                   where c.Id == id && c.Resource.User.UserName == user
                    select c;
 
 
@@ -61,17 +61,15 @@ namespace ReadingApp.Infrastructure
 
         }
 
-        public void Delete(Comment comment)
+        public void Delete(Comment comment, string user)
         {
             _db.Comments.Remove(comment);
             _db.SaveChanges();
         }
 
-        public void Edit(Comment comment)
+        public void SaveChanges()
         {
-            _db.Comments.Update(comment);
             _db.SaveChanges();
-
         }
 
     }

@@ -64,9 +64,9 @@ namespace ReadingApp.Controllers {
                 });
 
         }
-
+        //this.$stateParams['id']
         public deleteResource(resource) {
-            this.$http.delete(`/api/resource/${this.$stateParams['id']}`, resource)
+            this.$http.delete(`/api/resource/${resource.id}`, resource)
                 .then((response) => {
                     this.$state.go('booksview');
                 })
@@ -76,6 +76,26 @@ namespace ReadingApp.Controllers {
 
         }
 
+        public deleteComment(comment) {
+            this.$http.delete(`/api/comments/${comment.id}`).then((results) => {
+                // edit the array of comments on the page
+                this.$state.reload();
+            })
+                .catch((reason) => {
+                    console.log(reason);
+                });
+
+        }
+
+            public editComment(comment) {
+            this.$http.post(`/api/comments/${comment.id}`, comment).then((results) => {
+                this.$state.reload();
+            })
+                .catch((reason) => {
+                    console.log(reason);
+                });
+
+        }
 
 
     }
@@ -138,8 +158,8 @@ namespace ReadingApp.Controllers {
         }
 
         public deleteComment(comment) {
-            this.$http.delete(`/api/comments/${this.$stateParams['id']}`, comment).then((results) => {
-                this.$state.reload;
+            this.$http.delete(`/api/comments/${comment.id}`, comment).then((results) => {
+                this.$state.reload();
             })
                 .catch((reason) => {
                     console.log(reason);
@@ -147,8 +167,8 @@ namespace ReadingApp.Controllers {
         }
 
         public editComment(comment) {
-            this.$http.post(`/api/comments/${this.$stateParams['id']}`, comment).then((results) => {
-                this.$state.reload();
+            this.$http.patch(`/api/comments/${this.$stateParams['id']}`, comment).then((results) => {
+                this.$state.go('home');
             })
                 .catch((reason) => {
                     console.log(reason);
