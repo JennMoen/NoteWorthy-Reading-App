@@ -9,7 +9,7 @@
 
 <h6>Comments mathcing your search terms:</h6>
 <div ng-repeat="comment in controller.comments">
-    <div ui-sref="bookdetail({id: comment.resourceId})">Source: {{comment.resource}}</div>
+    <div ui-sref="bookdetail({resourceid: comment.resourceId})">Source: {{comment.resource}}</div>
     <div class="commentblock">
         <div>Location: {{comment.location}}</div>
         <div>{{comment.text}}</div>

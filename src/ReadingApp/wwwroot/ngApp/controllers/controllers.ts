@@ -44,6 +44,8 @@ namespace ReadingApp.Controllers {
         public resource;
         public comments;
 
+        //public editComment = false;
+
         constructor(private $http: ng.IHttpService, private $stateParams: ng.ui.IStateParamsService, private $state: ng.ui.IStateService) {
             $http.get(`/api/resource/${$stateParams['resourceid']}`)
                 .then((response) => {
