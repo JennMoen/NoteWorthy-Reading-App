@@ -58,7 +58,7 @@ textarea {
 .homeimg {
     height: 350px;
     width: 250px;
-   
+    margin: auto;
     padding: 20px;
     box-shadow: inset;
 }
@@ -105,4 +105,9 @@ textarea {
 #onebook {
 
 padding: 20px;
+}
+
+#edit{
+    height: 200px;
+    width: 900px;
 }

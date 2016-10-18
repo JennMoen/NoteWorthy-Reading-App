@@ -54,7 +54,8 @@ namespace ReadingApp.Controllers
         }
 
 
-        [HttpPost("{id}")]
+        [HttpPut("{commentId}")]
+        //[FromQuery]int commentId
         public IActionResult Update([FromBody] CommentDTO comment)
         {
             if (!ModelState.IsValid)

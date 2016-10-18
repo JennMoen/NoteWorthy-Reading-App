@@ -86,22 +86,35 @@ namespace ReadingApp.Services
             _commentRepo.Delete(_commentRepo.GetCommentById(comment.Id, currentUser).First(), currentUser);
         }
 
+        //What I was trying to get to work earlier on
+        //public void UpdateComment(CommentDTO comment, string currentUser)
+        //{
 
-        public void UpdateComment(CommentDTO comment, string currentUser)
+        //    Comment dbComment = _commentRepo.GetCommentById(comment.Id, currentUser).First();
+        //    {
+        //        dbComment.Location  = comment.Location;
+        //        comment.Text = dbComment.Text;
+
+        //            }
+
+        //    _commentRepo.SaveChanges();
+
+
+        //}
+
+            public void UpdateComment(CommentDTO comment, string currentUser)
         {
-
-            Comment dbComment = _commentRepo.GetCommentById(comment.Id, currentUser).First();
+            Comment dbComment = new Comment()
             {
-                dbComment.Location  = comment.Location;
-                comment.Text = dbComment.Text;
+                Id = comment.Id,
+                Location = comment.Location,
+                Text = comment.Text,
+                ResourceId=comment.ResourceId
+            };
 
-                    }
-
-            _commentRepo.SaveChanges();
-
+            _commentRepo.UpdateComment(dbComment);
 
         }
-
 
         public void AddComment(CommentDTO comment, string currentUser)
         {

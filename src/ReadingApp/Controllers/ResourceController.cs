@@ -77,9 +77,9 @@ namespace ReadingApp.Controllers
 
         [HttpDelete("{id}")]
 
-        public IActionResult Delete(ResourceDTO resource)
+        public IActionResult Delete(ResourceDTO resource, int id)
         {
-
+            resource.Id = id; //just now added this since it was in the comment controller too
             _rService.DeleteResource(resource, User.Identity.Name);
             return Ok();
         }

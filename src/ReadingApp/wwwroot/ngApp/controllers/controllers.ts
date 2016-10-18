@@ -44,7 +44,7 @@ namespace ReadingApp.Controllers {
         public resource;
         public comments;
 
-        //public editComment = false;
+        public editComment = false;
 
         constructor(private $http: ng.IHttpService, private $stateParams: ng.ui.IStateParamsService, private $state: ng.ui.IStateService) {
             $http.get(`/api/resource/${$stateParams['resourceid']}`)
@@ -67,9 +67,10 @@ namespace ReadingApp.Controllers {
 
         }
         //this.$stateParams['id']
+        //${resource.id }
         public deleteResource(resource) {
-            this.$http.delete(`/api/resource/${resource.id}`, resource)
-                .then((response) => {
+            this.$http.delete(`/api/resource/${this.$stateParams['resourceid']}`)
+                .then((results) => {
                     this.$state.go('booksview');
                 })
                 .catch((reason) => {
@@ -88,9 +89,9 @@ namespace ReadingApp.Controllers {
                 });
 
         }
-
-            public editComment(comment) {
-            this.$http.post(`/api/comments/${comment.id}`, comment).then((results) => {
+        //comment.id
+        public updateComment(comment) {
+            this.$http.put(`/api/comments/${this.$stateParams['commentId']}`, comment ).then((results) => {
                 this.$state.reload();
             })
                 .catch((reason) => {

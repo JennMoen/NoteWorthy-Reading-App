@@ -27,7 +27,7 @@
         <div>
 
             <label>Comments</label>
-            <textarea ng-model="comment.text"></textarea>
+            <textarea class="form-control" rows="5" ng-model="comment.text"></textarea>
         </div>
         <input type="submit" value="Add Comment" ng-model="comment" />
         <!--<button class="btn btn-primary">Add Comment</button>-->
@@ -39,14 +39,17 @@
 <div class="col-md-4" id="commentcol">
     <div class="div comments" ng-repeat="comment in controller.resource.comments">
         <div class="commentblock">
-            <form ng-submit="controller.editComment(comment)">
+            
                 <div> Location:<span ng-hide="editComment"> {{comment.location}}</span></div>
                 <input type="text" ng-show="editComment" ng-model="comment.location" />
                 <div>Comment:<span ng-hide="editComment">{{comment.text}}</span></div>
 
-                <textarea type="text" ng-model="comment.text" ng-show="editComment"></textarea>
-                <input type="button" value="Save Changes" ng-show="editComment" />
+                <textarea class="form-control" rows="9" type="text" ng-model="comment.text" ng-show="editComment"></textarea>
+            <form ng-submit="controller.updateComment(comment)">
+                <input type="submit" value="Save Changes" ng-show="editComment" />
+                
             </form>
+            <input type="button" value="Cancel" ng-show="editComment" ng-click="editComment=false" />
             <div>
                 <input type="button" value="Edit" ng-click="editComment=true" ng-hide="editComment" />
                 <input type="submit" value="Delete" ng-click="controller.deleteComment(comment)" />

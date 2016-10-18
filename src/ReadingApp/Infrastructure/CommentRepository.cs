@@ -67,11 +67,16 @@ namespace ReadingApp.Infrastructure
             _db.SaveChanges();
         }
 
-        public void SaveChanges()
+        //public void SaveChanges()
+        //{
+        //    _db.SaveChanges();
+        //}
+
+        public void UpdateComment(Comment dbComment)
         {
+            _db.Comments.Update(dbComment);
             _db.SaveChanges();
         }
-
     }
 
 }
