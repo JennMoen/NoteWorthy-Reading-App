@@ -1,33 +1,52 @@
-﻿<h1>Add a book or article</h1>
-<h3>Enter your search terms here:</h3>
+﻿<div class="row">
+    <div class="col-lg-6">
+        <h1>Add a book or article</h1>
+        <h3>Enter your search terms here:</h3>
 
-<form ng-submit="controller.doSearch(search)">
-    <label class="control-label" for="focusedInput">Enter book title, author or keyword</label>
-    <input class="form-control" id="focusedInput" type="text" ng-model="search" />
-    <input type="submit" value="Find a book" class="btn btn-primary" />
-</form>
-
-<p>(Don't see the book you want?  Enter your information manually) </p>
-
-<form ng-submit="controller.addResource(resource)">
-    <div>
-        <input type="text" ng-model="resource.title" placeholder="Title" />
-        <input type="text" ng-model="resource.author" placeholder="Author" />
+        <form ng-submit="controller.doSearch(search)">
+            <div class="form-group">
+                <label class="control-label" for="focusedInput">(Enter book title, author or keyword)</label>
+                <input class="form-control" id="focusedInput" type="text" ng-model="search" />
+            </div>
+            <input type="submit" value="Find a book" class="btn btn-primary" />
+        </form>
     </div>
-    <div>
-        <input type="text" ng-model="resource.imageUrl" placeholder="Image link" />
-        <input type="text" ng-model="resource.link" placeholder="GoogleBooks link" />
+    <div class="col-lg-6">
+        <p>(Don't see the book you want?  Enter your information manually) </p>
+
+        <form class="form-horizontal" ng-submit="controller.addResource(resource)">
+            <fieldset>
+                <legend>Book Info</legend>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Title</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" ng-model="resource.title" />
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Author</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" ng-model="resource.author" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Image Link</label>
+                    <div class="col-lg-10">
+                        <input type="text" ng-model="resource.imageUrl" class="form-control" />
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Add" />
+            </fieldset>
+        </form>
     </div>
-    <input type="submit" value="Add" />
-
-</form>
-
+</div>
 
 
 
 <div class="displaybooks">
     <div class="row">
-        <div id ="onebook" class="col-md-4" ng-repeat="resource in controller.resources" ng-click="controller.addResource(resource)">
+        <div id="onebook" class="col-md-4" ng-repeat="resource in controller.resources" ng-click="controller.addResource(resource)">
             <div>Author: {{resource.author}}</div>
             <div>Title: {{resource.title}}</div>
             <div><img ng-src="{{resource.imageUrl}}" /></div>
@@ -49,11 +68,3 @@
         </div>
     </div>
 </div>-->
-
-
-
-
-
-
-
-

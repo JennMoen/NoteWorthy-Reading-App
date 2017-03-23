@@ -1,10 +1,11 @@
 ﻿<h1>{{controller.message}}</h1>
-
+<div class="jumbotron">
 <div class="bookdiv" ng-repeat="resource in controller.resources"
     ui-sref="bookdetail({resourceid: resource.id})">
     <div> Author: {{resource.author}}</div>
     <div> Title: {{resource.title}} </div>
     <div><img class="bookimage" ng-src="{{resource.imageUrl}}" ng-if="resource.imageUrl" /></div>
     <div><img class="bookimage" ng-src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSRIRxDyIMYyS2JM8xe00NT5LiZ0eGKKBY2bADq2d8t8A8Aev1A1Q" ng-if="!resource.imageUrl" /></div>
+</div>
 </div>
 
